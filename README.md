@@ -23,6 +23,8 @@ The module java7 installs the oracle java7 jdk on Ubuntu or Debian based system.
 
 This module adds a apt repository and then proceeds to install oracle jdk7
 
+##### NOTE: This module may only be used if you agree to the Oracle license: http://www.oracle.com/technetwork/java/javase/terms/license/
+
 ## Setup
 
 ### What java7 affects
@@ -36,7 +38,7 @@ None at the moment.
 
 ### Beginning with java7
 
-`include java7` is enough to get you up and running. 
+`include java7` is enough to get you up and running.
 
 ##Usage
 
