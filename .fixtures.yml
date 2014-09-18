@@ -1,0 +1,10 @@
+fixtures:
+  forge_modules:
+    stdlib:
+      repo: 'puppetlabs/stdlib'
+      ref: '4.1.0'
+    apt:
+      repo: 'puppetlabs/apt'
+      ref: '1.0.1'
+  symlinks:
+    java7: "#{source_dir}"
