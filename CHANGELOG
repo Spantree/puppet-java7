@@ -1,3 +1,9 @@
+2014-09-18 - Sebastian Otaegui <feniix@gmail.com> - 0.3.0
+ * Add tests and clean up the java7 module
+ * Added rspec-tests
+ * Added acceptance testing
+ * Add long key instead of short GPG (see evil32.com)
+
 2014-03-16 - Sebastian Otaegui <feniix@gmail.com> - 0.2.2
  * change back to ppa repository from webupd8team
 
