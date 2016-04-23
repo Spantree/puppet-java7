@@ -1,9 +1,9 @@
 {
   "name": "spantree-java7",
-  "version": "0.3.2",
+  "version": "0.5.0",
   "author": "spantree",
   "summary": "Oracle Java7 Puppet Module",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/Spantree/puppet-java7.git",
   "project_page": "https://github.com/spantree/puppet-java7",
   "issues_url": "https://github.com/spantree/puppet-java7/issues",
@@ -12,7 +12,8 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "7"
+        "7",
+        "8"
       ]
     },
     {
@@ -26,17 +27,17 @@
   "dependencies": [
     {
       "name": "puppetlabs/apt",
-      "version_range": ">= 1.0.1"
+      "version_requirement": ">= 1.0.1 <= 2.2.1"
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_range": ">= 4.0.0"
+      "version_requirement": ">= 4.0.0 <5.0.0"
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=3.2.0 <4.0.0"
+      "version_requirement": ">=3.0.0 <=4.4.1"
     }
   ]
 }

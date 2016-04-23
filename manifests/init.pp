@@ -8,41 +8,6 @@
 #  include java7
 class java7 {
   case $::operatingsystem {
-    debian: {
-      include apt
-
-      apt::source { 'webupd8team-java':
-        location    => 'http://ppa.launchpad.net/webupd8team/java/ubuntu',
-        release     => 'precise',
-        repos       => 'main',
-        key         => '7B2C3B0889BF5709A105D03AC2518248EEA14886',
-        key_server  => 'keyserver.ubuntu.com',
-        include_src => true
-      }
-      package { 'oracle-java7-installer':
-        responsefile => '/tmp/java.preseed',
-        require      => [
-                          Apt::Source['webupd8team'],
-                          File['/tmp/java.preseed']
-                        ],
-      }
-    }
-    ubuntu: {
-      include apt
-
-      apt::ppa { 'ppa:webupd8team/java': }
-      package { 'oracle-java7-installer':
-        responsefile => '/tmp/java.preseed',
-        require      => [
-                          Apt::Ppa['ppa:webupd8team/java'],
-                          File['/tmp/java.preseed']
-                        ],
-      }
-    }
-    default: { notice "Unsupported operatingsystem ${::operatingsystem}" }
-  }
-
-  case $::operatingsystem {
     debian, ubuntu: {
       file { '/tmp/java.preseed':
         source => 'puppet:///modules/java7/java.preseed',
@@ -50,7 +15,61 @@ class java7 {
         backup => false,
       }
     }
+
     default: { notice "Unsupported operatingsystem ${::operatingsystem}" }
+  }
+
+  case $::operatingsystem {
+    debian: {
+      include apt
+
+      apt::source { 'webupd8team-java':
+        location => 'http://ppa.launchpad.net/webupd8team/java/ubuntu',
+        release  => 'precise',
+        repos    => 'main',
+        key      => {
+          'id'     => '7B2C3B0889BF5709A105D03AC2518248EEA14886',
+          'server' => 'keyserver.ubuntu.com',
+        },
+        include  => {
+          'deb' => true,
+          'src' => true,
+        },
+      }
+
+      package { 'oracle-java7-installer':
+        responsefile => '/tmp/java.preseed',
+        require      => [
+          Apt::Source['webupd8team-java'],
+          File['/tmp/java.preseed']
+        ],
+      }
+    }
+
+    ubuntu: {
+      include apt
+
+      apt::ppa { 'ppa:webupd8team/java': }
+
+      exec { 'apt-update':
+        command => '/usr/bin/apt-get update',
+        require => [
+          Apt::Ppa['ppa:webupd8team/java']
+        ],
+      }
+
+      package { 'oracle-java7-installer':
+        responsefile => '/tmp/java.preseed',
+        require      => [
+          Exec['apt-update'],
+          File['/tmp/java.preseed']
+        ],
+      }
+    }
+
+    default: {
+      notice "Unsupported operatingsystem ${::operatingsystem}"
+    }
   }
 
   file { '/etc/profile.d/set_java_home.sh':

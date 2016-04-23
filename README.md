@@ -1,6 +1,8 @@
 # java7
 
 [![Build Status](https://travis-ci.org/Spantree/puppet-java7.svg?branch=master)](https://travis-ci.org/Spantree/puppet-java7)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/spantree/java7.svg)](https://forge.puppetlabs.com/spantree/java7)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/spantree/java7.svg)](https://forge.puppetlabs.com/spantree/java7)
 
 #### Table of Contents
 
@@ -21,7 +23,7 @@ The module java7 installs the oracle java7 jdk on Ubuntu or Debian based system.
 
 ## Module Description
 
-This module adds a apt repository and then proceeds to install oracle jdk7
+This module adds a new apt repository and then proceeds to install oracle jdk7
 
 ##### NOTE: This module may only be used if you agree to the Oracle license: http://www.oracle.com/technetwork/java/javase/terms/license/
 
