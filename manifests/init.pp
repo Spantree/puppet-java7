@@ -22,7 +22,6 @@ class java7 {
   case $::operatingsystem {
     debian: {
       include apt
-
       apt::source { 'webupd8team-java':
         location => 'http://ppa.launchpad.net/webupd8team/java/ubuntu',
         release  => 'precise',
@@ -52,8 +51,9 @@ class java7 {
       apt::ppa { 'ppa:webupd8team/java': }
 
       exec { 'apt-update':
-        command => '/usr/bin/apt-get update',
-        require => [
+        command     => '/usr/bin/apt-get update',
+        refreshonly => true,
+        subscribe   => [
           Apt::Ppa['ppa:webupd8team/java']
         ],
       }
